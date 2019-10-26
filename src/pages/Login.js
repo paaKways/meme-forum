@@ -12,6 +12,7 @@ class Login extends Component {
             <div className="ui container" id="login">
                 <div className="ui row middle aligned center aligned">
                     <input className="ui input" value={username} type="text" name="username" onChange={onInputChange} />
+              
                     <input className="ui input" value={password} type="password" name="password" onChange={onInputChange} />   
                 </div>
             </div>
