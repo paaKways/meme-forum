@@ -1,35 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { onInputChange } from '../reducers/actions'
+import '../components/Login.css' //refactor
+
+
 
 class Login extends Component {
-   
-
     render(){
-        const { onInputChange, username, password, isLoggedIn } = this.props
-        return(
-            <div className="ui container" id="login">
-                <div className="ui row middle aligned center aligned">
-                    <input className="ui input" value={username} type="text" name="username" onChange={onInputChange} />
-              
-                    <input className="ui input" value={password} type="password" name="password" onChange={onInputChange} />   
+        const { isLoggedIn } = this.props
+        return (
+            <div id="login" className="ui container fluid">
+                <div className="ui row two column centered grid" id="login">
+                    <div className="center aligned middle aligned column">
+                        <div className="ui message">
+                            <button className="ui button">Sign in with Google</button>    
+                        </div>
+                    </div>  
                 </div>
             </div>
-          )
+        )
     }
 
 }
 
 const mapStateToProps = ({login}) => {
-    const { username, password, isLoggedIn } = login
-    return { username, password, isLoggedIn }
+    const { isLoggedIn } = login
+    return { isLoggedIn }
 }
 
-const mapDispatchToProps = (dispatch) => {
+/* const mapDispatchToProps = (dispatch) => {
     return { 
         onInputChange: (e) => dispatch(onInputChange(e.target))
     }
-}
+} */
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps)(Login)
