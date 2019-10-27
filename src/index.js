@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
@@ -6,22 +6,27 @@ import { BrowserRouter } from 'react-router-dom'
 import store from './store'
 import routes from './routes'
 
-import Firebase, { FirebaseContext } from './components/Firebase'
+import Firebase from './components/Firebase/Firebase'
 
-const App = () => {
-    return (
-        <Provider store={store}>
+class App extends Component {
+    constructor (props) {
+        super(props)
+        this.firebase = new Firebase()
+    }
 
-                <BrowserRouter>
-                    {routes}
-                </BrowserRouter> 
-           
-        </Provider>
-    )
+    render () {
+        return (
+            <Provider store={store}>
+
+                    <BrowserRouter>
+                        {routes}
+                    </BrowserRouter> 
+            
+            </Provider>
+        )
+    }
 }
 ReactDOM.render(
-    <FirebaseContext.Provider value={new Firebase()}>
-        <App />
-    </FirebaseContext.Provider>,
+    <App />,
   document.getElementById('root')
 )
