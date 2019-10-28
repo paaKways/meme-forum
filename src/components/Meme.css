@@ -1,0 +1,104 @@
+.ui.container.fluid.grid.stackable {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.borde{
+    border: 1px solid black;
+}
+#top {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.likes {
+    align-items: center;
+}
+
+#content {
+    padding: 10px;
+}
+
+.meme-img img {
+    width: 20rem;
+    height: 20rem;
+}
+
+.meme {
+    padding: 10px;
+    justify-content: center;
+}
+
+.meme-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-height: 200px;
+}
+
+.likes p {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.caret.up-caret {
+    background: transparent;
+    border-top: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid #ffe344;  
+}
+
+.caret.down-caret {
+    background: transparent;
+    border-bottom: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 40px solid #ffe344;  
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row wrap;
+    padding: 10px;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#upload-btn-row {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#upload-btn {
+    background: #ffe344;
+    color: #fff;
+}
+
+#upload-btn:hover {
+    background: #e4cb3c;
+}
+
+.circle {
+    border-radius: 50%;
+    padding: 15px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+}
+
+#logo {
+    background: #ffe344;
+    border: 0;
+    color: #fff;
+}
