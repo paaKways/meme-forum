@@ -8,7 +8,7 @@ const routes = (
         <Route path='/meme/:id' component={MemeSingle}></Route>
         <Route path='/newPost' component={MemeSingle}></Route>
         <Route path='/memes' component={MemeList}></Route>
-        <Route path='/' component={Login}></Route>
+        <Route exact path='/' component={Login}></Route>
     </Switch>
 )
 

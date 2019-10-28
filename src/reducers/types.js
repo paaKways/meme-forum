@@ -1,2 +1,5 @@
 export const INPUT_CHANGED = 'INPUT_CHANGED'
-export const LOGGED_IN = 'LOGGED_IN'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILED = 'LOGIN_FAILED'
+export const LOGGED_OUT = 'LOGGED_OUT'
+export const LOGIN_START = 'LOGIN_START'
