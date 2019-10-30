@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
 }
-.borde{
+.bordr{
     border: 1px solid black;
 }
 #top {
@@ -36,8 +36,12 @@
 .meme-details {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     max-height: 200px;
+}
+
+.meme-details .meme-title {
+   color: #ffe344;
 }
 
 .likes p {
@@ -63,6 +67,19 @@
     border-top: 40px solid #ffe344;  
 }
 
+.caret.caret.up-caret:hover,
+.caret.caret.down-caret:hover {
+    cursor: pointer;
+}
+
+.caret.caret.up-caret:hover {
+    border-bottom: 40px solid #e4cb3c; 
+} 
+
+.caret.down-caret:hover {
+    border-top: 40px solid #e4cb3c; 
+}
+
 .flex-row {
     display: flex;
     flex-direction: row wrap;
@@ -73,6 +90,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#meme-left .item, .meme-details{
+    margin:10px;
 }
 
 #upload-btn-row {
