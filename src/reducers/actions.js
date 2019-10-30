@@ -23,6 +23,7 @@ export const doGoogleSignIn = (history) => {
             const token  = result.credential.accessToken
             const user = result.user   
             loginUserSuccess(dispatch, {token, user})  
+            history.push('/memes')
             
         }).catch((err) => {
             const error = {
@@ -32,7 +33,7 @@ export const doGoogleSignIn = (history) => {
                 credential: err.credential
             }
             loginUserFailed(dispatch, error)
-            history.push('/memes')
+            
         })
     }
 }
@@ -53,7 +54,6 @@ const loginUserSuccess = (dispatch, {token, user}) => {
         type: LOGIN_SUCCESS,
         payload: {token, user}
     })
-    //history.push('/memes')
 }
 
 const loginUserFailed = (dispatch, error) => {
