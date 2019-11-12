@@ -1,7 +1,6 @@
-.ui.container.fluid.grid.stackable {
-    margin: 0;
-    padding: 20px;
+.ui.container.grid.stackable {
     min-height: 100vh;
+    min-width: 50vw;
     display: flex;
     flex-direction: column;
 }
@@ -10,45 +9,70 @@
 }
 #top {
     height: 100px;
+    padding: 25px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.likes {
-    align-items: center;
 }
 
 #content {
     padding: 10px;
 }
 
+.meme-author {
+    align-items: center;
+    justify-content: space-between;
+    margin-left: -10px;
+}
+
 .meme-img img {
     width: 20rem;
     height: 20rem;
+    border: 1px solid lightgrey;
 }
 
-.meme {
-    padding: 10px;
-    justify-content: center;
-}
 
 .meme-details {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-height: 200px;
+    justify-content: flex-end;
+    margin-left: 5px;
+    padding: 10px;
 }
 
 .meme-details .meme-title {
    color: #ffe344;
 }
 
-.likes p {
+.button.meme-yellow {
+    background: #ffe344;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.button.meme-yellow:hover {
+    background: #e4cb3c;
+    color: #fff;
+}
+
+.memes-count-container .item {
+    align-items: center;
+}
+
+.item {
+    margin-right: 10px;
+}
+
+.memes-count-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.memes-count {
     font-weight: bold;
     font-size: 20px;
-    padding: 10px;
-    padding-bottom: 0;
+    margin:0;
 }
 
 .caret.up-caret {
@@ -89,25 +113,11 @@
 .flex-column{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-}
-
-#meme-left .item, .meme-details{
-    margin:10px;
 }
 
 #upload-btn-row {
     display: flex;
     flex-direction: row-reverse;
-}
-
-#upload-btn {
-    background: #ffe344;
-    color: #fff;
-}
-
-#upload-btn:hover {
-    background: #e4cb3c;
 }
 
 .circle {
@@ -116,6 +126,13 @@
     width: 50px;
     height: 50px;
     border: 1px solid #333;
+    background-size: cover;
+}
+
+.circle.image {
+    border: 0;
+    padding: 0;
+    width: 60px;
 }
 
 #logo {

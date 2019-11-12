@@ -1,8 +1,35 @@
 body {
     position: relative;
-
 }
-.ui.modal {
-    z-index: 1;
+
+.overlay {
     position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #333;
+    opacity: 0.3;
+    z-index: 2;
+}
+.modal-container {
+    display: none;
+}
+
+.modal-container.active{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    z-index: 2;
+}
+.active {
+    display: block;
+}
+
+.modal-container.active .ui.modal {
+    max-width: 350px;
+    position: absolute;
+    top: 20vw;
+    z-index:3;
+    align-self: center;
 }

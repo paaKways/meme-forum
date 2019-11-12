@@ -1,38 +1,142 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/storage'
+import 'firebase/firestore'
 
-import fakeMemes from '../services/fakeMemes'
+//import fakeMemes from '../services/fakeMemes'
 
-import { MEME_LOADED_SUCCESS, 
-    MEME_CREATED_SUCCESS, MEME_CREATED_FAIL, 
-    MEME_LOADED_FAIL } from './types'
+import {
+    MEME_LOADED_SUCCESS,
+    MEME_LOADED_FAIL,
+    MEME_CREATED_SUCCESS, 
+    MEME_CREATED_FAIL,
+    SCROLL_UP, 
+    SCROLL_DOWN,
+    TOGGLE_MODAL, 
+    UPLOAD_BEGIN, 
+    PUSH_PROGRESS,
+    GET_ENTRIES_COUNT
+} from './types'
 
-export const createMeme = ({src, title, author}) => {
+
+export const createMeme = ({ src, title }) => {
+    let db = firebase.firestore()
+    let memes = db.collection('memes')
+    let t = Math.floor(Date.now() / 1000);
+
     const { currentUser } = firebase.auth()
     console.log(currentUser)
 
-    return (dispatch) => dispatch({ type: MEME_CREATED_SUCCESS})
-    /* return (dispatch) => {
-        firebase.database().ref('/memes/entries')
-        .push({src, title, 
-            author: `$(currentUser.email)` })
-        .then(() => {
-            dispatch({ type: MEME_CREATED_SUCCESS})
+    return (dispatch, getState) => {
+        let { memesList } = getState().memes
+        let id = memesList.length + 1
+
+        memes
+        .add({
+            src, 
+            title, 
+            id,     
+            user: {
+                email: `${currentUser.email}`,
+                img: `${currentUser.photoURL}`
+            },
+            timestamp: t,
+            comments: []
         })
-        .catch(() => {
-            dispatch({ type: MEME_CREATED_FAIL})
+        .then((docRef) => {
+            console.log('Document written with id', docRef)
+            dispatch({ type: MEME_CREATED_SUCCESS })
+            dispatch(toggleModal()) 
         })
-    } */
-} 
+        .catch((err) => {
+            console.log(MEME_CREATED_FAIL,err)
+            dispatch({ type: MEME_CREATED_FAIL })
+            dispatch(toggleModal())
+        }) 
+    }
+}
 
 export const loadMemes = () => {
     return (dispatch) => {
         // loaded memes asynchronously
+        let db = firebase.firestore()
+        let memes = db.collection('memes')
 
-        dispatch({
-            type: MEME_LOADED_SUCCESS,
-            payload: fakeMemes
+        memes
+        .get()
+        .then((snapshot) => {
+            if(snapshot) {
+                let docs = [], id = 1
+                
+                snapshot.forEach((doc) => { 
+                    let entry = {...doc.data(), id}
+                    console.log(entry)
+                    docs.push(entry) 
+                    id++
+                })
+                dispatch({ type: MEME_LOADED_SUCCESS, payload: docs })
+            }
+            else {
+                console.log('No such document exists')    
+            }
         })
+        .catch((err) => {
+            dispatch({ type: MEME_LOADED_FAIL, error: err })
+        })
+    }
+}
 
-    } 
+export const uploadMeme = ({ caption, file }) => {
+    return (dispatch) => {
+        dispatch({ type: UPLOAD_BEGIN})
+        let storageRef = firebase.storage().ref()
+        let fileRef = storageRef.child('memes/' + file.name)
+
+        let uploadTask = fileRef.put(file)
+
+        uploadTask.on('state_changed', (snapshot) => {
+            console.log('Uploading image to cloud ...')
+            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            console.log(progress)
+            pushProgress(progress)
+        }, (error) => {
+            console.log(error)
+        }, () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                console.log('Recording in database...')
+                dispatch(createMeme({
+                    src: downloadURL,
+                    title: caption
+                }))
+                console.log('File available at', downloadURL)
+            })
+        })
+    }
+}
+
+export const onScrollUp = (index) => {
+    return {
+        type: SCROLL_UP,
+        payload: index
+    }
+}
+
+export const onScrollDown = (index) => {
+    return {
+        type: SCROLL_DOWN,
+        payload: index
+    }
+}
+
+export const toggleModal = () => {
+    return {
+        type: TOGGLE_MODAL,
+    }
+}
+
+const pushProgress = (percentage) => {
+    return {
+        type: PUSH_PROGRESS,
+        payload: percentage
+    }
 }

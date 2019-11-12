@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import store from '../store'
-import { Provider } from 'react-redux'
+import { connect, Provider } from 'react-redux'
 
 import './Modal.css'
+//import { toggleModal } from '../reducers/memeActions'
 
 class Modal extends Component{
     componentDidMount() {
         this.modalTarget = document.createElement('div')
-        this.modalTarget.className = 'ui active modal   '
+        //this.modalTarget.className = 'ui modal'
         document.body.appendChild(this.modalTarget)
         this._render()
     }
@@ -23,9 +24,14 @@ class Modal extends Component{
     }
 
     _render() {
+        const { modalIsActive } = this.props
+        const activeClass = modalIsActive ? ' active': ''
+        
         ReactDOM.render(
             <Provider store={store}>
-                <div>{this.props.children}</div>   
+                <div className={"modal-container"+activeClass}>
+                    {this.props.children} 
+                </div> 
             </Provider>,
             this.modalTarget 
         )
@@ -38,5 +44,9 @@ class Modal extends Component{
     }
 }    
   
+const mapStateToProps = state => {
+    const { modalIsActive } = state.memes
+    return { modalIsActive }
+}
 
-export default Modal
+export default connect(mapStateToProps)(Modal)

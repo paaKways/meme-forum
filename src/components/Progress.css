@@ -1,0 +1,15 @@
+.active {
+    display: block;
+    transition: 300ms;
+    transition-property: margin;
+    margin: 0;
+
+}
+
+.hidden {
+    display: none;
+    margin-top: 5px;
+    transition: 300ms;
+    transition-property: margin;
+}
+
