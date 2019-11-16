@@ -22,7 +22,7 @@ const Meme = props => {
 
                 <Link to={"/meme/" + selected.id}>
                     <div className="border item meme-img">
-                        <img src={selected.src} />
+                        <img alt="Loading meme.." src={selected.src} />
                     </div>
                 </Link>
             </section>

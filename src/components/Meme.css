@@ -40,7 +40,7 @@
     flex-direction: column;
     justify-content: flex-end;
     margin-left: 5px;
-    width: 250px;
+    width: 300px;
     padding: 10px;
 }
 
@@ -92,12 +92,14 @@
     border-bottom: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-top: 40px solid #ffe344;  
+    border-top: 40px solid #ffe344; 
+     
 }
 
 .caret.caret.up-caret:hover,
 .caret.caret.down-caret:hover {
     cursor: pointer;
+
 }
 
 .caret.caret.up-caret:hover {
@@ -136,7 +138,12 @@
 .circle.image {
     border: 0;
     padding: 0;
-    width: 60px;
+    transition: 300ms;
+}
+
+.circle.image:hover {
+    box-shadow: #ffe344 0px 0px 20px;
+    transition: 300ms;
 }
 
 #logo {
