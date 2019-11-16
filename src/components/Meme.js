@@ -10,8 +10,8 @@ const Meme = props => {
 
     return (
 
-        <div className="ui row grid stackable meme">
-            <section id="meme-left" className="border flex-row">
+        <div className="ui row bordr grid stackable meme">
+            <section id="meme-left" className="bordr flex-row">
                 <div className="memes-count-container">
                     <div className="item border flex-column">
                         <div onClick={() => onScrollUp(indexOfVisible)} className="caret up-caret"></div>
@@ -27,7 +27,7 @@ const Meme = props => {
                 </Link>
             </section>
             
-            <div className="border meme-details">
+            <div className="bordr meme-details">
                 <h2 className="ui header meme-title">{selected.title}</h2>
                 <p className="ui lead meme-comment-count">{selected.comments.length} comments</p>
                 

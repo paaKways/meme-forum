@@ -1,21 +1,16 @@
-
 #login{
     background: #ffe344;
     height: 100vh;
 }
 
 .ui.message {
-    max-width: 450px;
-    min-height: 300px;
-    justify-content: space-between;
+    min-height: 170px;
+    width: 400px;
+    text-align: center;
+    top: 30%;
     background: #fff;
-    display: flex;
-    flex-direction: column;
 }
 
-.ui.labeled.icon.button {
-    top: 50px;
-}
 
 
 .google-signin {

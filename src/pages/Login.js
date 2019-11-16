@@ -14,10 +14,8 @@ class Login extends Component {
     render(){
         const { isLoggedIn, doGoogleSignIn, history } = this.props
         return (
-            <div className="ui container fluid">
-                <div className="ui row two column centered grid" id="login">
-                    <div className="center aligned middle aligned column">
-                        <div className="ui message">
+            <div id="login">
+               <div className="ui message container ">
                             <div className="ui column vertical">
                                 <h1>Meme Forum</h1>
                                 <p className="lead">Home of the funniest memes</p>
@@ -25,15 +23,14 @@ class Login extends Component {
                                 {
                                     isLoggedIn 
                                     ? <Link to='/memes' className="ui middle aligned button">Continue to main page >></Link>
-                                    : (<button onClick={() => doGoogleSignIn(history)} className="ui labeled icon middle aligned button">
+                                    : (<button onClick={() => doGoogleSignIn(history)} className="ui labeled icon button">
                                         <i className="icon google-signin"></i>
                                         Sign in with Google
                                     </button> )
                                 }
                                    
                             </div>
-                        </div>
-                    </div>  
+                        
                 </div>
             </div>
         )
