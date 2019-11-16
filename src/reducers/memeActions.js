@@ -15,7 +15,6 @@ import {
     TOGGLE_MODAL, 
     UPLOAD_BEGIN, 
     PUSH_PROGRESS,
-    GET_ENTRIES_COUNT
 } from './types'
 
 
@@ -43,7 +42,7 @@ export const createMeme = ({ src, title }) => {
         }
 
         memes
-        .add()
+        .add(newMeme)
         .then(() => {
             dispatch({ type: MEME_CREATED_SUCCESS })
             dispatch(toggleModal()) 
@@ -99,7 +98,7 @@ export const uploadMeme = ({ caption, file }) => {
             console.log('Uploading image to cloud ...')
             let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             console.log(progress)
-            pushProgress(progress)
+            dispatch(pushProgress(progress))
         }, (error) => {
             console.log(error)
         }, () => {
