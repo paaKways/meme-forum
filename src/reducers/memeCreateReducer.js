@@ -30,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, [action.payload.name]: action.payload.value }
 
         case PUSH_PROGRESS:
-            return {...state, percentage: action.payload.percentage}
+            return {...state, percentage: action.payload}
         
         case FILE_ADDED:
             return { ...state, file: action.file }
@@ -40,7 +40,7 @@ export default (state = INITIAL_STATE, action) => {
 
         case MEME_CREATED_FAIL:
             console.log(MEME_CREATED_FAIL)
-            return { ...state, error: action.errer }
+            return { ...state, error: action.error }
 
         case MEME_CREATED_SUCCESS:
             console.log(MEME_CREATED_SUCCESS)

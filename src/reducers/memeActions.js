@@ -30,9 +30,7 @@ export const createMeme = ({ src, title }) => {
     return (dispatch, getState) => {
         let { memesList } = getState().memes
         let id = memesList.length + 1
-
-        memes
-        .add({
+        let newMeme = {
             src, 
             title, 
             id,     
@@ -42,15 +40,18 @@ export const createMeme = ({ src, title }) => {
             },
             timestamp: t,
             comments: []
-        })
-        .then((docRef) => {
-            console.log('Document written with id', docRef)
+        }
+
+        memes
+        .add()
+        .then(() => {
             dispatch({ type: MEME_CREATED_SUCCESS })
             dispatch(toggleModal()) 
+            dispatch({ type: MEME_LOADED_SUCCESS, payload: newMeme })
         })
         .catch((err) => {
-            console.log(MEME_CREATED_FAIL,err)
-            dispatch({ type: MEME_CREATED_FAIL })
+            console.log(MEME_CREATED_FAIL, err)
+            dispatch({ type: MEME_CREATED_FAIL, error: err })
             dispatch(toggleModal())
         }) 
     }
